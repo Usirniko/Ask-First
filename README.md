@@ -1,36 +1,66 @@
-# 🐧 AI 企鹅养成 - 大学生思辨成长伙伴
+# Dev Workflow Kit
 
-> 在线地址：**[https://penguin-growth-d0gxgysye3ccd5918-1433392690.tcloudbaseapp.com/](https://penguin-growth-d0gxgysye3ccd5918-1433392690.tcloudbaseapp.com/)**
+> 让 AI 帮你写代码时不再瞎猜。这套方法论会教 AI 在动手前先问你 16 个关键问题，把需求聊清楚了再开工。然后按五个阶段一步步推进，从想法到上线全都有章可循。
 
-## 部署信息
+## 支持的工具
 
-| 项目 | 详情 |
-|------|------|
-| 部署平台 | 腾讯云 CloudBase 静态托管 |
-| 环境 ID | `penguin-growth-d0gxgysye3ccd5918` |
-| 区域 | 上海（ap-shanghai） |
-| 域名 | `penguin-growth-d0gxgysye3ccd5918-1433392690.tcloudbaseapp.com` |
-| 部署时间 | 2026-06-13（v3.5.3 缓存破坏版） |
+| 工具 | 使用方式 |
+|------|---------|
+| **Cursor** | 将 `dev-workflow-universal/cursor/.cursorrules` 复制到项目根目录 |
+| **GitHub Copilot / Codex** | 将 `dev-workflow-universal/codex/copilot-instructions.md` 复制到 `.github/` 目录 |
+| **Windsurf** | 将 `dev-workflow-universal/windsurf/.windsurfrules` 复制到项目根目录 |
+| **IMA / cuser / 其他** | 打开 `dev-workflow-universal/system-prompt.md`，全文复制粘贴到自定义指令设置 |
+| **CodeBuddy** | 已内置在 `.codebuddy/skills/dev-workflow/` 中，自动生效 |
 
-## CloudBase 控制台入口
+## 方法论内容
 
-- [环境概览](https://tcb.cloud.tencent.com/dev?envId=penguin-growth-d0gxgysye3ccd5918#/overview)
-- [静态托管](https://tcb.cloud.tencent.com/dev?envId=penguin-growth-d0gxgysye3ccd5918#/static-hosting)
+### Phase 0：项目前期探测（动手前必问）
 
-## 🚀 部署流程（缓存破坏版）
+4 轮 16 个问题，帮你把需求聊透再写代码：
 
-项目使用**内容哈希缓存破坏**（Cache Busting）机制，每次部署自动生成带哈希的新文件名，彻底绕过 CDN 缓存。
+- **Round 1**：这是什么项目？给谁用？有没有参考？
+- **Round 2**：核心功能有哪些？要不要登录？数据存哪？有哪些界面？界面怎么跳转？
+- **Round 3**：用什么技术栈？偏什么设计风格？有什么平台限制？
+- **Round 4**：出错了怎么办？要不要多语言？接不接第三方服务？
 
-```bash
-# 1. 生成带哈希的资源文件 + 更新 index.html 引用
-node scripts/build-cache-bust.js
+### Phase 1-5：全链路开发
 
-# 2. 上传 index.html + 所有 js/*.hash.js + css/*.hash.css 到静态托管
-#    新文件名完全不同，CDN 无缓存，立即生效 ✅
+| 阶段 | 做什么 |
+|------|--------|
+| Phase 1 需求 | PRD、数据结构、算法伪代码、视觉规范 |
+| Phase 2 技术选型 | 技术栈决策、架构图、状态管理、持久化方案 |
+| Phase 3 编码实现 | 7 步实施顺序 + 编码原则 + 防御性编程 |
+| Phase 4 测试修复 | 功能测试、代码审查清单、5 个常见陷阱 |
+| Phase 5 上线发布 | 项目清理、Git 工作流、CDN 缓存策略 |
+
+## 仓库结构
+
+```
+├── .codebuddy/skills/dev-workflow/   # CodeBuddy 原生 Skill
+│   ├── SKILL.md
+│   └── references/workflow-guide.md  # 方法论全文
+├── dev-workflow-universal/            # 通用版（适用所有 AI 编码工具）
+│   ├── README.md                      # 各工具使用说明
+│   ├── cursor/.cursorrules
+│   ├── codex/copilot-instructions.md
+│   ├── windsurf/.windsurfrules
+│   └── system-prompt.md               # 粘贴到任意工具
+├── 项目开发流程总结.md                 # 方法论中文总结
+└── README.md
 ```
 
-> 💡 每次代码修改后，只需运行这两步即可确保云端总是最新版本。
+## 快速开始
 
-## 项目简介
+```bash
+# Cursor 用户
+cp dev-workflow-universal/cursor/.cursorrules 你的项目/
 
-基于 AI 的企鹅养成应用，陪伴大学生四年成长，通过思辨对话提升批判性思维能力。
+# Copilot 用户
+mkdir -p 你的项目/.github
+cp dev-workflow-universal/codex/copilot-instructions.md 你的项目/.github/
+
+# Windsurf 用户
+cp dev-workflow-universal/windsurf/.windsurfrules 你的项目/
+```
+
+之后只要在项目的 `dev-workflow-universal/` 中找到适合你工具的文件夹，复制对应文件到项目根目录即可。
