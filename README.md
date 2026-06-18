@@ -1,6 +1,6 @@
 # Dev Workflow Kit
 
-> 让 AI 帮你写代码时不再瞎猜。这套方法论会教 AI 在动手前先问你 16 个关键问题，把需求聊清楚了再开工。然后按五个阶段一步步推进，从想法到上线全都有章可循。支持 Cursor、Copilot、Windsurf、IMA 等主流 AI 编程助手。
+> 让 AI 帮你写代码时不再瞎猜。这套方法论会教 AI 在动手前先问你 16 个关键问题，把需求聊清楚了再开工。然后按五个阶段一步步推进，从想法到上线全都有章可循。支持 Cursor、Copilot、Windsurf、Trae、IMA 等主流 AI 编程助手。
 
 ---
 
@@ -16,15 +16,15 @@
 
 ### 第 1 步：找到适合你的文件
 
-打开 `通用技能/` 文件夹，根据你用的工具选择：
+根据你用的工具选择对应的文件：
 
-| 你用的工具 | 文件夹 | 文件 |
-|-----------|--------|------|
-| Cursor | `cursor/` | `.cursorrules` |
-| GitHub Copilot | `codex/` | `copilot-instructions.md` |
-| Windsurf | `windsurf/` | `.windsurfrules` |
-| IMA、cuser 等 | — | `system-prompt.md` |
-| CodeBuddy | — | 直接用，无需操作 |
+| 你用的工具 | 文件夹 | 文件 | 放到哪里 |
+|-----------|--------|------|---------|
+| Cursor | `cursor/` | `.cursorrules` | 项目根目录 |
+| GitHub Copilot | `codex/` | `copilot-instructions.md` | `.github/copilot-instructions.md` |
+| Windsurf | `windsurf/` | `.windsurfrules` | 项目根目录 |
+| **Trae** | `trae/` | `.trae/rules/dev-workflow.md` | 项目根目录（直接复制整个 `.trae/` 文件夹） |
+| IMA、cuser 等 | — | `system-prompt.md` | 粘贴到「自定义指令」中 |
 
 ### 第 2 步：放到项目中
 
@@ -34,7 +34,6 @@
 你的项目/
 ├── .cursorrules    ← 把这个文件放进来
 ├── index.html
-├── src/
 └── ...
 ```
 
@@ -47,6 +46,15 @@
 ```
 
 **Windsurf 用户**：把 `.windsurfrules` 复制到项目根目录。
+
+**Trae 用户**：把整个 `.trae/` 文件夹复制到项目根目录。
+
+```
+你的项目/
+└── .trae/
+    └── rules/
+        └── dev-workflow.md    ← 放这里
+```
 
 **IMA / cuser / 通用工具**：打开 `system-prompt.md`，全选复制，粘贴到工具的「自定义指令」或「系统提示词」设置里。
 
@@ -86,15 +94,13 @@
 ## 仓库有什么？
 
 ```
-├── 通用技能/                       # 所有工具的技能文件
-│   ├── cursor/.cursorrules        # Cursor 规则
-│   ├── codex/copilot-instructions.md  # Copilot 规则
-│   ├── windsurf/.windsurfrules    # Windsurf 规则
-│   ├── system-prompt.md           # 通用版（粘贴即可）
-│   ├── codebuddy/                 # CodeBuddy 版
-│   ├── 项目开发流程总结.md          # 方法论中文详解
-│   └── README.md                  # 详细使用说明
-├── .codebuddy/skills/             # CodeBuddy 原生 Skill
+├── cursor/.cursorrules            # Cursor 规则
+├── codex/copilot-instructions.md  # Copilot 规则
+├── windsurf/.windsurfrules        # Windsurf 规则
+├── trae/.trae/rules/              # Trae 规则
+├── codebuddy/                     # CodeBuddy Skill
+├── system-prompt.md               # 通用版（粘贴即可）
+├── 项目开发流程总结.md              # 方法论中文详解
 └── README.md                      # 你现在看的这个文件
 ```
 
