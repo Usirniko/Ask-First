@@ -1,5 +1,5 @@
 ---
-name: dev-workflow
+name: ask-first
 description: >
   Provides a structured five-phase development workflow for building frontend web applications,
   mini-games, prototypes, and single-file tools. This skill should be used when the user asks to
